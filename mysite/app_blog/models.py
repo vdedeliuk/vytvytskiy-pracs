@@ -21,7 +21,6 @@ class Article(models.Model):
     text = models.TextField('Текст', blank=True)
     pub_date = models.DateTimeField('Дата публікації', default=timezone.now)
     main_page = models.BooleanField('Головна', default=True, help_text='Показувати на головній сторінці')
-    category = models.ForeignKey(Category, related_name='articles', blank=True, null=True, verbose_name='Категорія', on_delete=models.CASCADE)
     objects = models.Manager()
 
     class Meta:

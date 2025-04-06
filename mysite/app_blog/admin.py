@@ -4,10 +4,10 @@ from .models import Article, ArticleImage, Category
 from .forms import ArticleImageForm
 
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('name', 'slug',)  # Fixed: Changed 'category' to 'name'
-    prepopulated_fields = {'slug': ('name',)}  # Fixed: Changed 'category' to 'name'
+    list_display = ('name', 'slug',)
+    prepopulated_fields = {'slug': ('name',)}
     fields = (
-        ('name', 'slug'),  # Fixed: Changed 'category' to 'name'
+        ('name', 'slug'),
     )
 
 admin.site.register(Category, CategoryAdmin)
@@ -19,18 +19,14 @@ class ArticleImageInline(admin.TabularInline):
     fields = ('title', 'image',)
 
 class ArticleAdmin(admin.ModelAdmin):
-    list_display = ('title', 'pub_date', 'slug', 'main_page')
-    inlines = [ArticleImageInline]
+    list_display = ('title', 'pub_date', 'main_page')
     list_filter = ['main_page']
-    multiupload_form = True
-    multiupload_list = False
+    search_fields = ['title', 'description']
     prepopulated_fields = {'slug': ('title',)}
-    raw_id_fields = ('category',)
     fields = (
         ('pub_date', 'title', 'description', 'main_page'),
-        ('category',),
         ('text',),
-        ('slug',),  
+        ('slug',),
     )
 
     def delete_file(self, pk, request):

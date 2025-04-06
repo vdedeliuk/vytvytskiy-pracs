@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Створити Статтю</title>
+</head>
+<body>
+    <h1>Створити Нову Статтю</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Створити Статтю</button>
+    </form>
+    <a href="{% url 'home' %}" style="display: inline-block; margin-top: 20px; text-decoration: none; background-color: #007bff; color: white; padding: 10px 15px; border-radius: 5px;">Повернутися на Головну</a>
+</body>
+</html>
